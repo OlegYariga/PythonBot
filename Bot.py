@@ -5,6 +5,10 @@ import vk_api
 from vk_api import VkApi
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType, VkBotMessageEvent, VkBotEvent
 from bs4 import BeautifulSoup
+from flask import Flask
+
+
+app = Flask(__name__)
 
 my_names = ['детка', 'baby', 'умник', 'clever boy', 'ублюдок']
 answers = ['Что опять?!',
@@ -153,10 +157,14 @@ def main():
         pass
 
 
-if __name__ == '__main__':
+@app.route('/')
+def hello_world():
     print("Запустился")
-    print(check_weather_forecast())
     while True:
         main()
         reauth()
-    print("hahaha")
+    print("Остановился")
+
+
+if __name__ == '__main__':
+    app.run()
